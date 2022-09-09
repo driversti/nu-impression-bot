@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${NU_IMPRESSION_DB_HOST}/${NU_IMPRESSION_DB_NAME}
+    username: ${NU_IMPRESSION_DB_USERNAME}
+    password: ${NU_IMPRESSION_DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
