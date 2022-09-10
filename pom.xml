@@ -19,6 +19,8 @@
     <java.version>17</java.version>
     <testcontainers.version>1.17.3</testcontainers.version>
     <spock.version>2.2-groovy-3.0</spock.version>
+    <pengrad.version>6.2.0</pengrad.version>
+    <guava.version>31.1-jre</guava.version>
 
     <!--  PLUGINS  -->
     <gmaven.version>1.13.1</gmaven.version>
@@ -53,6 +55,16 @@
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>com.github.pengrad</groupId>
+      <artifactId>java-telegram-bot-api</artifactId>
+      <version>${pengrad.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${guava.version}</version>
     </dependency>
 
     <!--    TEST  DEPENDENCIES   -->
