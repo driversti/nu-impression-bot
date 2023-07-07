@@ -22,8 +22,8 @@
 
     <!--  PLUGINS  -->
     <gmaven.version>1.13.1</gmaven.version>
-    <maven-failsafe.version>3.0.0-M5</maven-failsafe.version>
-    <maven-surefire.version>3.0.0-M5</maven-surefire.version>
+    <maven-failsafe.version>3.1.2</maven-failsafe.version>
+    <maven-surefire.version>3.1.2</maven-surefire.version>
   </properties>
 
   <dependencies>
