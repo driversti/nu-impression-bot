@@ -1,13 +1,13 @@
 package com.github.driversti.nuimpressionbot.common;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.stream.IntStream;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class ParkingSpaceNumbersHolder {
 
-  public Collection<Integer> numbers(ParkingSpaceLocation location) {
+  public List<Integer> numbers(ParkingSpaceLocation location) {
 // TODO: consider replacing with strategy
     if (location == ParkingSpaceLocation.OUTSIDE) {
       return createList(51, 113);
@@ -18,7 +18,7 @@ public class ParkingSpaceNumbersHolder {
     throw new IllegalArgumentException("Location is not expected: " + location);
   }
 
-  private static Collection<Integer> createList(int startInclusive, int endInclusive) {
+  private static List<Integer> createList(int startInclusive, int endInclusive) {
     return IntStream.rangeClosed(startInclusive, endInclusive).boxed().toList();
   }
 }

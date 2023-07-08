@@ -3,13 +3,14 @@ package com.github.driversti.nuimpressionbot.features.registration.parkingspace.
 import com.github.driversti.nuimpressionbot.common.Constants;
 import com.github.driversti.nuimpressionbot.common.ParkingSpaceLocation;
 import com.github.driversti.nuimpressionbot.common.ParkingSpaceNumbersHolder;
+import com.github.driversti.nuimpressionbot.common.PartitionList;
 import com.github.driversti.nuimpressionbot.features.registration.parkingspace.location.RegisterParkingSpaceLocationEvent;
 import com.github.driversti.nuimpressionbot.keyboard.InlineKeyboardBuilder;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.request.EditMessageText;
 import com.pengrad.telegrambot.response.BaseResponse;
-import java.util.Collection;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
@@ -20,6 +21,8 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class RegisterParkingSpaceNumberAsker {
 
+  private static final int PAGE_SIZE = 49;
+  private static final int PAGES = 3;
   private final TelegramBot bot;
 
   @EventListener
@@ -34,9 +37,11 @@ public class RegisterParkingSpaceNumberAsker {
 
   private InlineKeyboardMarkup parkingSpaceNumberKeyboard(ParkingSpaceLocation location) {
     InlineKeyboardBuilder builder = InlineKeyboardBuilder.builder().row();
-    Collection<Integer> numbers = ParkingSpaceNumbersHolder.numbers(location);
+    List<Integer> numbers = ParkingSpaceNumbersHolder.numbers(location);
+    PartitionList<Integer> partitionList = PartitionList.ofSize(numbers, 3);
     int numberInRow = 0;
-    for (Integer number : numbers) {
+    final int page = 0;
+    for (Integer number : partitionList.get(page)) {
       if (numberInRow == 7) {
         builder.endRow().row()
             .button(number, Constants.REG_PS_NUMBER_PREFIX + number);
@@ -47,6 +52,8 @@ public class RegisterParkingSpaceNumberAsker {
       }
     }
     return builder
+        .endRow().row()
+        .button("➡️", "_reg_ps_number_forward_")
         .endRow()
         .build();
   }
